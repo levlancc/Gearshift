@@ -5,71 +5,85 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import pantheonImage from "@/assets/pantheon.jpg";
-import eclipseImage from "@/assets/eclipse.jpg";
-import haloImage from "@/assets/halo.jpg";
-import obliqueImage from "@/assets/oblique.jpg";
-import lintelImage from "@/assets/lintel.jpg";
-import shadowlineImage from "@/assets/shadowline.jpg";
-import organicEarring from "@/assets/organic-earring.png";
-import linkBracelet from "@/assets/link-bracelet.png";
+import sportsCarImage from "@/assets/sports-car.jpg";
+import mercedesCoupeImage from "@/assets/mercedes-coupe.jpg";
+import astonMartinImage from "@/assets/aston-martin.jpg";
+import maseratiImage from "@/assets/maserati.jpg";
+import supercarYellowImage from "@/assets/supercar-yellow.jpg";
+import electricCarImage from "@/assets/electric-car.jpg";
 
-interface Product {
+interface Vehicle {
   id: number;
   name: string;
   category: string;
   price: string;
   image: string;
+  year: string;
 }
 
-const products: Product[] = [
+const vehicles: Vehicle[] = [
   {
     id: 1,
-    name: "Pantheon",
-    category: "Earrings",
-    price: "€2,850",
-    image: pantheonImage,
+    name: "488 GTB",
+    category: "Ferrari",
+    price: "$285,000",
+    image: sportsCarImage,
+    year: "2023",
   },
   {
     id: 2,
-    name: "Eclipse",
-    category: "Bracelets",
-    price: "€3,200",
-    image: eclipseImage,
+    name: "AMG GT",
+    category: "Mercedes-Benz",
+    price: "$162,000",
+    image: mercedesCoupeImage,
+    year: "2024",
   },
   {
     id: 3,
-    name: "Halo",
-    category: "Earrings",
-    price: "€1,950",
-    image: haloImage,
+    name: "DB11",
+    category: "Aston Martin",
+    price: "$245,000",
+    image: astonMartinImage,
+    year: "2023",
   },
   {
     id: 4,
-    name: "Oblique",
-    category: "Earrings",
-    price: "€1,650",
-    image: obliqueImage,
+    name: "Quattroporte",
+    category: "Maserati",
+    price: "$125,000",
+    image: maseratiImage,
+    year: "2024",
   },
   {
     id: 5,
-    name: "Lintel",
-    category: "Earrings",
-    price: "€2,250",
-    image: lintelImage,
+    name: "Huracán EVO",
+    category: "Lamborghini",
+    price: "$320,000",
+    image: supercarYellowImage,
+    year: "2023",
   },
   {
     id: 6,
-    name: "Shadowline",
-    category: "Bracelets",
-    price: "€3,950",
-    image: shadowlineImage,
+    name: "Model S Plaid",
+    category: "Tesla",
+    price: "$108,000",
+    image: electricCarImage,
+    year: "2024",
   },
 ];
 
 const ProductCarousel = () => {
   return (
     <section className="w-full mb-16 px-6">
+      <div className="flex justify-between items-end mb-6">
+        <div>
+          <p className="text-primary text-xs font-light uppercase tracking-widest mb-1">Featured</p>
+          <h2 className="font-display text-3xl text-foreground">Latest Arrivals</h2>
+        </div>
+        <Link to="/category/new-arrivals" className="text-sm font-light text-foreground/70 hover:text-primary transition-colors">
+          View All
+        </Link>
+      </div>
       <Carousel
           opts={{
             align: "start",
@@ -78,42 +92,35 @@ const ProductCarousel = () => {
           className="w-full"
         >
           <CarouselContent className="">
-            {products.map((product) => (
+            {vehicles.map((vehicle) => (
                <CarouselItem
-                 key={product.id}
+                 key={vehicle.id}
                  className="basis-1/2 md:basis-1/3 lg:basis-1/4 pr-2 md:pr-4"
                >
-                 <Link to={`/product/${product.id}`}>
+                 <Link to={`/product/${vehicle.id}`}>
                   <Card className="border-none shadow-none bg-transparent group">
                     <CardContent className="p-0">
-                      <div className="aspect-square mb-3 overflow-hidden bg-muted/10 relative">
+                      <div className="aspect-square mb-4 overflow-hidden bg-muted/10 relative">
                         <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-full object-cover transition-all duration-300 group-hover:opacity-0"
+                          src={vehicle.image}
+                          alt={`${vehicle.category} ${vehicle.name}`}
+                          className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
                         />
-                        <img
-                          src={product.category === "Earrings" ? organicEarring : linkBracelet}
-                          alt={`${product.name} lifestyle`}
-                          className="absolute inset-0 w-full h-full object-cover transition-all duration-300 opacity-0 group-hover:opacity-100"
-                        />
-                        <div className="absolute inset-0 bg-black/[0.03]"></div>
-                        {(product.id === 1 || product.id === 3) && (
-                          <div className="absolute top-2 left-2 px-2 py-1 text-xs font-medium text-black">
-                            NEW
-                          </div>
-                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+                        <div className="absolute top-3 left-3 px-2 py-1 text-xs font-light text-foreground bg-background/80 backdrop-blur-sm">
+                          {vehicle.year}
+                        </div>
                       </div>
                      <div className="space-y-1">
-                       <p className="text-sm font-light text-foreground">
-                         {product.category}
+                       <p className="text-xs font-light text-primary uppercase tracking-wider">
+                         {vehicle.category}
                        </p>
                        <div className="flex justify-between items-center">
                          <h3 className="text-sm font-medium text-foreground">
-                           {product.name}
+                           {vehicle.name}
                          </h3>
-                         <p className="text-sm font-light text-foreground">
-                           {product.price}
+                         <p className="text-sm font-light text-foreground/70">
+                           {vehicle.price}
                          </p>
                        </div>
                      </div>
