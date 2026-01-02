@@ -1,7 +1,8 @@
 import { ArrowRight, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ShoppingBag from "./ShoppingBag";
+import UserMenu from "./UserMenu";
 import sportsCarImage from "@/assets/sports-car.jpg";
 import luxurySuvImage from "@/assets/luxury-suv.jpg";
 import electricCarImage from "@/assets/electric-car.jpg";
@@ -197,6 +198,7 @@ const Navigation = () => {
               </span>
             )}
           </button>
+          <UserMenu />
         </div>
       </div>
 
