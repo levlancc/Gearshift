@@ -1,14 +1,14 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
-import pantheonImage from "@/assets/pantheon.jpg";
-import eclipseImage from "@/assets/eclipse.jpg";
-import haloImage from "@/assets/halo.jpg";
-import obliqueImage from "@/assets/oblique.jpg";
-import lintelImage from "@/assets/lintel.jpg";
-import shadowlineImage from "@/assets/shadowline.jpg";
-import organicEarring from "@/assets/organic-earring.png";
-import linkBracelet from "@/assets/link-bracelet.png";
+import sportsCarImage from "@/assets/sports-car.jpg";
+import mercedesCoupeImage from "@/assets/mercedes-coupe.jpg";
+import astonMartinImage from "@/assets/aston-martin.jpg";
+import maseratiImage from "@/assets/maserati.jpg";
+import supercarYellowImage from "@/assets/supercar-yellow.jpg";
+import electricCarImage from "@/assets/electric-car.jpg";
+import luxurySuvImage from "@/assets/luxury-suv.jpg";
+import classicCarImage from "@/assets/classic-car.jpg";
 
 interface Product {
   id: number;
@@ -17,179 +17,208 @@ interface Product {
   price: string;
   image: string;
   isNew?: boolean;
+  year?: string;
 }
 
-// Extended product list for category page
+// Luxury car inventory
 const products: Product[] = [
   {
     id: 1,
-    name: "Pantheon",
-    category: "Earrings",
-    price: "€2,850",
-    image: pantheonImage,
+    name: "488 GTB",
+    category: "Ferrari",
+    price: "$285,000",
+    image: sportsCarImage,
     isNew: true,
+    year: "2024",
   },
   {
     id: 2,
-    name: "Eclipse",
-    category: "Bracelets",
-    price: "€3,200",
-    image: eclipseImage,
+    name: "AMG GT",
+    category: "Mercedes-Benz",
+    price: "$162,000",
+    image: mercedesCoupeImage,
+    year: "2024",
   },
   {
     id: 3,
-    name: "Halo",
-    category: "Earrings",
-    price: "€1,950",
-    image: haloImage,
+    name: "DB11 V12",
+    category: "Aston Martin",
+    price: "$245,000",
+    image: astonMartinImage,
     isNew: true,
+    year: "2024",
   },
   {
     id: 4,
-    name: "Oblique",
-    category: "Earrings",
-    price: "€1,650",
-    image: obliqueImage,
+    name: "Quattroporte",
+    category: "Maserati",
+    price: "$125,000",
+    image: maseratiImage,
+    year: "2023",
   },
   {
     id: 5,
-    name: "Lintel",
-    category: "Earrings",
-    price: "€2,250",
-    image: lintelImage,
+    name: "Huracán EVO",
+    category: "Lamborghini",
+    price: "$320,000",
+    image: supercarYellowImage,
+    isNew: true,
+    year: "2024",
   },
   {
     id: 6,
-    name: "Shadowline",
-    category: "Bracelets",
-    price: "€3,950",
-    image: shadowlineImage,
+    name: "Model S Plaid",
+    category: "Tesla",
+    price: "$108,000",
+    image: electricCarImage,
+    year: "2024",
   },
   {
     id: 7,
-    name: "Meridian",
-    category: "Earrings",
-    price: "€2,450",
-    image: pantheonImage,
+    name: "Cayenne Turbo",
+    category: "Porsche",
+    price: "$185,000",
+    image: luxurySuvImage,
+    year: "2024",
   },
   {
     id: 8,
-    name: "Vertex",
-    category: "Bracelets",
-    price: "€2,800",
-    image: eclipseImage,
+    name: "Continental GT",
+    category: "Bentley",
+    price: "$245,000",
+    image: classicCarImage,
+    year: "2023",
   },
   {
     id: 9,
-    name: "Apex",
-    category: "Earrings",
-    price: "€1,550",
-    image: haloImage,
+    name: "812 Superfast",
+    category: "Ferrari",
+    price: "$395,000",
+    image: sportsCarImage,
+    year: "2023",
   },
   {
     id: 10,
-    name: "Zenith",
-    category: "Earrings",
-    price: "€1,850",
-    image: obliqueImage,
+    name: "S-Class S580",
+    category: "Mercedes-Benz",
+    price: "$135,000",
+    image: mercedesCoupeImage,
+    year: "2024",
   },
   {
     id: 11,
-    name: "Prism",
-    category: "Earrings",
-    price: "€2,050",
-    image: lintelImage,
+    name: "Vantage",
+    category: "Aston Martin",
+    price: "$195,000",
+    image: astonMartinImage,
+    year: "2024",
   },
   {
     id: 12,
-    name: "Radiant",
-    category: "Bracelets",
-    price: "€3,650",
-    image: shadowlineImage,
+    name: "Ghibli Trofeo",
+    category: "Maserati",
+    price: "$98,000",
+    image: maseratiImage,
+    year: "2023",
   },
   {
     id: 13,
-    name: "Stellar",
-    category: "Earrings",
-    price: "€2,150",
-    image: pantheonImage,
+    name: "Aventador SVJ",
+    category: "Lamborghini",
+    price: "$575,000",
+    image: supercarYellowImage,
+    isNew: true,
+    year: "2024",
   },
   {
     id: 14,
-    name: "Cosmos",
-    category: "Bracelets",
-    price: "€2,950",
-    image: eclipseImage,
+    name: "Model X Plaid",
+    category: "Tesla",
+    price: "$119,000",
+    image: electricCarImage,
+    year: "2024",
   },
   {
     id: 15,
-    name: "Aurora",
-    category: "Earrings",
-    price: "€1,750",
-    image: haloImage,
+    name: "911 GT3 RS",
+    category: "Porsche",
+    price: "$245,000",
+    image: luxurySuvImage,
+    year: "2024",
   },
   {
     id: 16,
-    name: "Nebula",
-    category: "Earrings",
-    price: "€1,850",
-    image: obliqueImage,
+    name: "Flying Spur",
+    category: "Bentley",
+    price: "$285,000",
+    image: classicCarImage,
+    year: "2024",
   },
   {
     id: 17,
-    name: "Orbit",
-    category: "Earrings",
-    price: "€2,350",
-    image: lintelImage,
+    name: "SF90 Stradale",
+    category: "Ferrari",
+    price: "$625,000",
+    image: sportsCarImage,
+    year: "2024",
   },
   {
     id: 18,
-    name: "Galaxy",
-    category: "Bracelets",
-    price: "€3,450",
-    image: shadowlineImage,
+    name: "G63 AMG",
+    category: "Mercedes-Benz",
+    price: "$195,000",
+    image: mercedesCoupeImage,
+    year: "2024",
   },
   {
     id: 19,
-    name: "Lunar",
-    category: "Earrings",
-    price: "€2,050",
-    image: pantheonImage,
+    name: "DBS Superleggera",
+    category: "Aston Martin",
+    price: "$325,000",
+    image: astonMartinImage,
+    year: "2023",
   },
   {
     id: 20,
-    name: "Solar",
-    category: "Bracelets",
-    price: "€3,150",
-    image: eclipseImage,
+    name: "MC20",
+    category: "Maserati",
+    price: "$225,000",
+    image: maseratiImage,
+    isNew: true,
+    year: "2024",
   },
   {
     id: 21,
-    name: "Astral",
-    category: "Earrings",
-    price: "€1,650",
-    image: haloImage,
+    name: "Urus Performante",
+    category: "Lamborghini",
+    price: "$285,000",
+    image: supercarYellowImage,
+    year: "2024",
   },
   {
     id: 22,
-    name: "Cosmic",
-    category: "Earrings",
-    price: "€1,950",
-    image: obliqueImage,
+    name: "Roadster",
+    category: "Tesla",
+    price: "$215,000",
+    image: electricCarImage,
+    isNew: true,
+    year: "2025",
   },
   {
     id: 23,
-    name: "Celestial",
-    category: "Earrings",
-    price: "€2,250",
-    image: lintelImage,
+    name: "Taycan Turbo S",
+    category: "Porsche",
+    price: "$195,000",
+    image: luxurySuvImage,
+    year: "2024",
   },
   {
     id: 24,
-    name: "Ethereal",
-    category: "Bracelets",
-    price: "€3,750",
-    image: shadowlineImage,
+    name: "Bentayga Speed",
+    category: "Bentley",
+    price: "$265,000",
+    image: classicCarImage,
+    year: "2024",
   },
 ];
 
@@ -206,30 +235,30 @@ const ProductGrid = () => {
                   <div className="aspect-square mb-3 overflow-hidden bg-muted/10 relative">
                     <img
                       src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover transition-all duration-300 group-hover:opacity-0"
+                      alt={`${product.category} ${product.name}`}
+                      className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
                     />
-                    <img
-                      src={product.category === "Earrings" ? organicEarring : linkBracelet}
-                      alt={`${product.name} lifestyle`}
-                      className="absolute inset-0 w-full h-full object-cover transition-all duration-300 opacity-0 group-hover:opacity-100"
-                    />
-                    <div className="absolute inset-0 bg-black/[0.03]"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
                     {product.isNew && (
-                      <div className="absolute top-2 left-2 px-2 py-1 text-xs font-medium text-black">
+                      <div className="absolute top-2 left-2 px-2 py-1 text-xs font-medium text-foreground bg-background/80 backdrop-blur-sm">
                         NEW
+                      </div>
+                    )}
+                    {product.year && (
+                      <div className="absolute top-2 right-2 px-2 py-1 text-xs font-light text-foreground bg-background/80 backdrop-blur-sm">
+                        {product.year}
                       </div>
                     )}
                   </div>
                   <div className="space-y-1">
-                    <p className="text-sm font-light text-foreground">
+                    <p className="text-xs font-light text-primary uppercase tracking-wider">
                       {product.category}
                     </p>
                     <div className="flex justify-between items-center">
                       <h3 className="text-sm font-medium text-foreground">
                         {product.name}
                       </h3>
-                      <p className="text-sm font-light text-foreground">
+                      <p className="text-sm font-light text-foreground/70">
                         {product.price}
                       </p>
                     </div>
