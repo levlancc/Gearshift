@@ -1,17 +1,17 @@
 import { useState, useRef } from "react";
 import ImageZoom from "./ImageZoom";
-import pantheonImage from "@/assets/pantheon.jpg";
-import eclipseImage from "@/assets/eclipse.jpg";
-import haloImage from "@/assets/halo.jpg";
-import organicEarring from "@/assets/organic-earring.png";
-import linkBracelet from "@/assets/link-bracelet.png";
+import sportsCarImage from "@/assets/sports-car.jpg";
+import mercedesCoupeImage from "@/assets/mercedes-coupe.jpg";
+import astonMartinImage from "@/assets/aston-martin.jpg";
+import maseratiImage from "@/assets/maserati.jpg";
+import supercarYellowImage from "@/assets/supercar-yellow.jpg";
 
 const productImages = [
-  pantheonImage,
-  organicEarring,
-  eclipseImage,
-  linkBracelet,
-  haloImage,
+  sportsCarImage,
+  mercedesCoupeImage,
+  astonMartinImage,
+  maseratiImage,
+  supercarYellowImage,
 ];
 
 const ProductImageGallery = () => {
@@ -75,7 +75,7 @@ const ProductImageGallery = () => {
             >
               <img
                 src={image}
-                alt={`Product view ${index + 1}`}
+                alt={`Vehicle view ${index + 1}`}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>
@@ -95,7 +95,7 @@ const ProductImageGallery = () => {
           >
             <img
               src={productImages[currentImageIndex]}
-              alt={`Product view ${currentImageIndex + 1}`}
+              alt={`Vehicle view ${currentImageIndex + 1}`}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 select-none"
             />
           </div>

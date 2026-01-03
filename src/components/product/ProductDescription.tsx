@@ -21,7 +21,7 @@ const CustomStar = ({ filled, className }: { filled: boolean; className?: string
 const ProductDescription = () => {
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-  const [isCareOpen, setIsCareOpen] = useState(false);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
 
   return (
@@ -33,7 +33,7 @@ const ProductDescription = () => {
           onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
           className="w-full h-14 px-0 justify-between hover:bg-transparent font-light rounded-none"
         >
-          <span>Description</span>
+          <span>Overview</span>
           {isDescriptionOpen ? (
             <ChevronUp className="h-4 w-4" />
           ) : (
@@ -43,27 +43,28 @@ const ProductDescription = () => {
         {isDescriptionOpen && (
           <div className="pb-6 space-y-4">
             <p className="text-sm font-light text-muted-foreground leading-relaxed">
-              The Pantheon earrings embody architectural elegance with their clean, geometric design. 
-              Inspired by classical Roman architecture, these statement pieces feature a sophisticated 
-              interplay of curves and angles that catch and reflect light beautifully.
+              The Ferrari 488 GTB is a masterpiece of Italian engineering, representing the evolution 
+              of Ferrari's renowned mid-rear-engined V8 sports car lineage. Its twin-turbocharged 
+              3.9-liter V8 engine delivers breathtaking performance while maintaining the visceral 
+              driving experience Ferrari is celebrated for.
             </p>
             <p className="text-sm font-light text-muted-foreground leading-relaxed">
-              Each earring is meticulously crafted from premium sterling silver with an 18k gold 
-              plating, ensuring both durability and luxury. The minimalist aesthetic makes them 
-              perfect for both everyday wear and special occasions.
+              This particular example features the iconic Rosso Corsa finish, paired with a luxurious 
+              nero leather interior. With only 1,250 miles on the odometer, this vehicle is in 
+              exceptional condition and ready for its next custodian.
             </p>
           </div>
         )}
       </div>
 
-      {/* Product Details */}
+      {/* Specifications */}
       <div className="border-b border-border">
         <Button
           variant="ghost"
           onClick={() => setIsDetailsOpen(!isDetailsOpen)}
           className="w-full h-14 px-0 justify-between hover:bg-transparent font-light rounded-none"
         >
-          <span>Product Details</span>
+          <span>Specifications</span>
           {isDetailsOpen ? (
             <ChevronUp className="h-4 w-4" />
           ) : (
@@ -73,49 +74,58 @@ const ProductDescription = () => {
         {isDetailsOpen && (
           <div className="pb-6 space-y-3">
             <div className="flex justify-between">
-              <span className="text-sm font-light text-muted-foreground">SKU</span>
-              <span className="text-sm font-light text-foreground">LE-PTH-001</span>
+              <span className="text-sm font-light text-muted-foreground">VIN</span>
+              <span className="text-sm font-light text-foreground">ZFF79ALA8K0234XXX</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm font-light text-muted-foreground">Collection</span>
-              <span className="text-sm font-light text-foreground">Architectural Series</span>
+              <span className="text-sm font-light text-muted-foreground">Engine</span>
+              <span className="text-sm font-light text-foreground">3.9L Twin-Turbo V8</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm font-light text-muted-foreground">Closure</span>
-              <span className="text-sm font-light text-foreground">Post and butterfly back</span>
+              <span className="text-sm font-light text-muted-foreground">Horsepower</span>
+              <span className="text-sm font-light text-foreground">661 HP @ 8,000 RPM</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm font-light text-muted-foreground">Hypoallergenic</span>
-              <span className="text-sm font-light text-foreground">Yes</span>
+              <span className="text-sm font-light text-muted-foreground">Torque</span>
+              <span className="text-sm font-light text-foreground">561 lb-ft @ 3,000 RPM</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-sm font-light text-muted-foreground">Drivetrain</span>
+              <span className="text-sm font-light text-foreground">Rear-Wheel Drive</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-sm font-light text-muted-foreground">Interior</span>
+              <span className="text-sm font-light text-foreground">Nero Leather</span>
             </div>
           </div>
         )}
       </div>
 
-      {/* Care Instructions */}
+      {/* Vehicle History */}
       <div className="border-b border-border">
         <Button
           variant="ghost"
-          onClick={() => setIsCareOpen(!isCareOpen)}
+          onClick={() => setIsHistoryOpen(!isHistoryOpen)}
           className="w-full h-14 px-0 justify-between hover:bg-transparent font-light rounded-none"
         >
-          <span>Care & Cleaning</span>
-          {isCareOpen ? (
+          <span>Vehicle History</span>
+          {isHistoryOpen ? (
             <ChevronUp className="h-4 w-4" />
           ) : (
             <ChevronDown className="h-4 w-4" />
           )}
         </Button>
-        {isCareOpen && (
+        {isHistoryOpen && (
           <div className="pb-6 space-y-4">
             <ul className="space-y-2">
-              <li className="text-sm font-light text-muted-foreground">• Clean with a soft, dry cloth after each wear</li>
-              <li className="text-sm font-light text-muted-foreground">• Avoid contact with perfumes, lotions, and cleaning products</li>
-              <li className="text-sm font-light text-muted-foreground">• Store in the provided jewelry pouch when not wearing</li>
-              <li className="text-sm font-light text-muted-foreground">• Remove before swimming, exercising, or showering</li>
+              <li className="text-sm font-light text-muted-foreground">• One owner from new</li>
+              <li className="text-sm font-light text-muted-foreground">• Full Ferrari service history</li>
+              <li className="text-sm font-light text-muted-foreground">• No accidents or damage reported</li>
+              <li className="text-sm font-light text-muted-foreground">• Original window sticker included</li>
             </ul>
             <p className="text-sm font-light text-muted-foreground">
-              For professional cleaning, visit your local jeweler or contact our customer service team.
+              A comprehensive vehicle history report is available upon request. Contact us for 
+              detailed maintenance records and service documentation.
             </p>
           </div>
         )}
@@ -137,7 +147,7 @@ const ProductDescription = () => {
                   filled={star <= 4.8}
                 />
               ))}
-              <span className="text-sm font-light text-muted-foreground ml-1">4.8</span>
+              <span className="text-sm font-light text-muted-foreground ml-1">4.9</span>
             </div>
           </div>
           {isReviewsOpen ? (
@@ -163,11 +173,29 @@ const ProductDescription = () => {
                       />
                     ))}
                   </div>
-                  <span className="text-sm font-light text-muted-foreground">Sarah M.</span>
+                  <span className="text-sm font-light text-muted-foreground">Michael R.</span>
                 </div>
                 <p className="text-sm font-light text-muted-foreground leading-relaxed">
-                  "Absolutely stunning earrings! The quality is exceptional and they go with everything. 
-                  The architectural design is so unique and I get compliments every time I wear them."
+                  "Exceptional buying experience from start to finish. The 488 GTB exceeded all my 
+                  expectations. The team was professional and the vehicle was delivered in perfect condition."
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <CustomStar
+                        key={star}
+                        filled={star <= 5}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm font-light text-muted-foreground">David L.</span>
+                </div>
+                <p className="text-sm font-light text-muted-foreground leading-relaxed">
+                  "The attention to detail in presenting this Ferrari was remarkable. Every question was 
+                  answered thoroughly, and the test drive convinced me immediately. Couldn't be happier!"
                 </p>
               </div>
 
@@ -181,29 +209,11 @@ const ProductDescription = () => {
                       />
                     ))}
                   </div>
-                  <span className="text-sm font-light text-muted-foreground">Emma T.</span>
+                  <span className="text-sm font-light text-muted-foreground">James K.</span>
                 </div>
                 <p className="text-sm font-light text-muted-foreground leading-relaxed">
-                  "Beautiful craftsmanship and comfortable to wear all day. The gold plating has held up 
-                  perfectly after months of regular wear. Highly recommend!"
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <CustomStar
-                        key={star}
-                        filled={true}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm font-light text-muted-foreground">Jessica R.</span>
-                </div>
-                <p className="text-sm font-light text-muted-foreground leading-relaxed">
-                  "These earrings are a work of art. The minimalist design is elegant and sophisticated. 
-                  Perfect weight and the packaging was beautiful too."
+                  "A dream car delivered with white-glove service. The documentation was complete and 
+                  the vehicle history was transparent. Highly recommend this dealership."
                 </p>
               </div>
             </div>
