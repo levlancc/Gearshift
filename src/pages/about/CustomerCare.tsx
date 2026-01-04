@@ -21,19 +21,19 @@ const CustomerCare = () => {
         <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
         <PageHeader 
           title="Customer Care" 
-          subtitle="We're here to help you with all your jewelry needs"
+          subtitle="We're here to assist you with all your automotive needs"
         />
         
         <ContentSection title="Contact Information">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="space-y-4">
               <h3 className="text-lg font-light text-foreground">Phone</h3>
-              <p className="text-muted-foreground">+1 (555) 123-4567</p>
-              <p className="text-sm text-muted-foreground">Mon-Fri: 9AM-6PM EST<br />Sat: 10AM-4PM EST</p>
+              <p className="text-muted-foreground">+1 (888) 555-GEAR</p>
+              <p className="text-sm text-muted-foreground">Mon-Fri: 8AM-8PM EST<br />Sat-Sun: 10AM-6PM EST</p>
             </div>
             <div className="space-y-4">
               <h3 className="text-lg font-light text-foreground">Email</h3>
-              <p className="text-muted-foreground">care@lineajewelry.com</p>
+              <p className="text-muted-foreground">concierge@gearshift.com</p>
               <p className="text-sm text-muted-foreground">Response within 24 hours</p>
             </div>
             <div className="space-y-4">
@@ -48,57 +48,57 @@ const CustomerCare = () => {
 
         <ContentSection title="Frequently Asked Questions">
           <Accordion type="single" collapsible className="space-y-4">
-            <AccordionItem value="shipping" className="border border-border rounded-lg px-6">
+            <AccordionItem value="financing" className="border border-border rounded-lg px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                What are your shipping options and timeframes?
+                What financing options are available?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                We offer free standard shipping (3-5 business days) on orders over $500. Express shipping (1-2 business days) is available for $25. All orders are fully insured and require signature confirmation.
+                We partner with premium lenders to offer competitive financing rates. Options include traditional auto loans, lease programs, and balloon financing. Our finance team will work with you to find the best solution for your situation.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="returns" className="border border-border rounded-lg px-6">
+            <AccordionItem value="tradein" className="border border-border rounded-lg px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                What is your return and exchange policy?
+                Do you accept trade-ins?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                We offer a 30-day return policy for unworn items in original condition. Custom and engraved pieces are final sale. Returns are free with our prepaid return label.
+                Yes, we accept trade-ins of luxury and exotic vehicles. Our appraisal team will evaluate your vehicle and provide a competitive offer. Trade-in value can be applied directly to your purchase.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="warranty" className="border border-border rounded-lg px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                What warranty do you offer on your jewelry?
+                What warranty coverage do your vehicles have?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                All LINEA jewelry comes with a lifetime warranty against manufacturing defects. This includes free repairs for normal wear and tear, stone tightening, and professional cleaning.
+                Coverage varies by vehicle. Many of our vehicles still carry manufacturer warranty. We also offer extended warranty programs through reputable providers. Ask our team for specific coverage details on any vehicle.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="sizing" className="border border-border rounded-lg px-6">
+            <AccordionItem value="inspection" className="border border-border rounded-lg px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                Can I resize my jewelry after purchase?
+                Are vehicles inspected before sale?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Yes, we offer free ring resizing within 60 days of purchase (up to 2 sizes). Additional resizing is available for a service fee. Some designs cannot be resized due to their construction.
+                Every vehicle undergoes a comprehensive multi-point inspection by certified technicians. We provide a detailed condition report and complete vehicle history. Independent pre-purchase inspections are also welcomed.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="care" className="border border-border rounded-lg px-6">
+            <AccordionItem value="delivery" className="border border-border rounded-lg px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                How should I care for my LINEA jewelry?
+                Can you deliver vehicles nationwide?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Store pieces separately in soft pouches, avoid contact with chemicals and cosmetics, and clean gently with a soft cloth. We recommend professional cleaning every 6-12 months.
+                Yes, we offer enclosed transport delivery anywhere in the continental United States. International shipping is also available. Delivery costs are calculated based on distance and are provided upon request.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="authentication" className="border border-border rounded-lg px-6">
+            <AccordionItem value="testdrive" className="border border-border rounded-lg px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                How can I verify the authenticity of my jewelry?
+                How do I schedule a test drive?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Every LINEA piece comes with a certificate of authenticity and is hallmarked. You can verify authenticity on our website using your unique piece number or contact our customer care team.
+                Test drives can be scheduled online or by calling our showroom. A valid driver's license and proof of insurance are required. For high-performance vehicles, we may request additional documentation.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -124,8 +124,8 @@ const CustomerCare = () => {
               </div>
               
               <div className="space-y-2">
-                <label className="text-sm font-light text-foreground">Order Number (Optional)</label>
-                <Input className="rounded-none" placeholder="Enter your order number if applicable" />
+                <label className="text-sm font-light text-foreground">Vehicle of Interest (Optional)</label>
+                <Input className="rounded-none" placeholder="e.g., 2024 Ferrari 488 GTB" />
               </div>
               
               <div className="space-y-2">
