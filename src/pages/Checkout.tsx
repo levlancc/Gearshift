@@ -7,8 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
-import pantheonImage from "@/assets/pantheon.jpg";
-import eclipseImage from "@/assets/eclipse.jpg";
+import sportsCarImage from "@/assets/sports-car.jpg";
+import mercedesImage from "@/assets/mercedes-coupe.jpg";
 
 const Checkout = () => {
   const [showDiscountInput, setShowDiscountInput] = useState(false);
@@ -19,7 +19,7 @@ const Checkout = () => {
     lastName: "",
     phone: ""
   });
-  const [shippingAddress, setShippingAddress] = useState({
+  const [deliveryAddress, setDeliveryAddress] = useState({
     address: "",
     city: "",
     postalCode: "",
@@ -36,7 +36,7 @@ const Checkout = () => {
     postalCode: "",
     country: ""
   });
-  const [shippingOption, setShippingOption] = useState("standard");
+  const [deliveryOption, setDeliveryOption] = useState("standard");
   const [paymentDetails, setPaymentDetails] = useState({
     cardNumber: "",
     expiryDate: "",
@@ -50,18 +50,18 @@ const Checkout = () => {
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
-      name: "Pantheon Ring",
-      price: "€2,450",
+      name: "2024 Ferrari 488 GTB",
+      price: "$285,000",
       quantity: 1,
-      image: pantheonImage,
-      size: "54 EU / 7 US"
+      image: sportsCarImage,
+      spec: "Twin-Turbo V8 • 661 HP"
     },
     {
       id: 2,
-      name: "Eclipse Earrings", 
-      price: "€1,850",
+      name: "2023 Mercedes-AMG GT", 
+      price: "$142,500",
       quantity: 1,
-      image: eclipseImage
+      image: mercedesImage
     }
   ]);
 
@@ -78,23 +78,23 @@ const Checkout = () => {
   };
 
   const subtotal = cartItems.reduce((sum, item) => {
-    const price = parseFloat(item.price.replace('€', '').replace(',', ''));
+    const price = parseFloat(item.price.replace('$', '').replace(',', ''));
     return sum + (price * item.quantity);
   }, 0);
 
-  const getShippingCost = () => {
-    switch (shippingOption) {
+  const getDeliveryCost = () => {
+    switch (deliveryOption) {
       case "express":
-        return 15;
-      case "overnight":
-        return 35;
+        return 2500;
+      case "white-glove":
+        return 5000;
       default:
-        return 0; // Standard shipping is free
+        return 0; // Standard delivery is free
     }
   };
   
-  const shipping = getShippingCost();
-  const total = subtotal + shipping;
+  const delivery = getDeliveryCost();
+  const total = subtotal + delivery;
 
   const handleDiscountSubmit = () => {
     // Handle discount code submission
@@ -106,8 +106,8 @@ const Checkout = () => {
     setCustomerDetails(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleShippingAddressChange = (field: string, value: string) => {
-    setShippingAddress(prev => ({ ...prev, [field]: value }));
+  const handleDeliveryAddressChange = (field: string, value: string) => {
+    setDeliveryAddress(prev => ({ ...prev, [field]: value }));
   };
 
   const handleBillingDetailsChange = (field: string, value: string) => {
@@ -153,8 +153,8 @@ const Checkout = () => {
                       </div>
                       <div className="flex-1">
                         <h3 className="font-light text-foreground">{item.name}</h3>
-                        {item.size && (
-                          <p className="text-sm text-muted-foreground">Size: {item.size}</p>
+                        {item.spec && (
+                          <p className="text-sm text-muted-foreground">{item.spec}</p>
                         )}
                         
                         {/* Quantity controls */}
@@ -220,7 +220,7 @@ const Checkout = () => {
                 <div className="border-t border-muted-foreground/20 mt-4 pt-6">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Subtotal</span>
-                    <span className="text-foreground">€{subtotal.toLocaleString()}</span>
+                    <span className="text-foreground">${subtotal.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
@@ -291,20 +291,20 @@ const Checkout = () => {
                     />
                   </div>
 
-                  {/* Shipping Address */}
+                  {/* Delivery Address */}
                   <div className="border-t border-muted-foreground/20 pt-6 mt-8">
-                    <h3 className="text-base font-light text-foreground mb-4">Shipping Address</h3>
+                    <h3 className="text-base font-light text-foreground mb-4">Delivery Address</h3>
                     
                     <div className="space-y-4">
                       <div>
-                        <Label htmlFor="shippingAddress" className="text-sm font-light text-foreground">
+                        <Label htmlFor="deliveryAddress" className="text-sm font-light text-foreground">
                           Address *
                         </Label>
                         <Input
-                          id="shippingAddress"
+                          id="deliveryAddress"
                           type="text"
-                          value={shippingAddress.address}
-                          onChange={(e) => handleShippingAddressChange("address", e.target.value)}
+                          value={deliveryAddress.address}
+                          onChange={(e) => handleDeliveryAddressChange("address", e.target.value)}
                           className="mt-2 rounded-none"
                           placeholder="Street address"
                         />
@@ -312,27 +312,27 @@ const Checkout = () => {
 
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <Label htmlFor="shippingCity" className="text-sm font-light text-foreground">
+                          <Label htmlFor="deliveryCity" className="text-sm font-light text-foreground">
                             City *
                           </Label>
                           <Input
-                            id="shippingCity"
+                            id="deliveryCity"
                             type="text"
-                            value={shippingAddress.city}
-                            onChange={(e) => handleShippingAddressChange("city", e.target.value)}
+                            value={deliveryAddress.city}
+                            onChange={(e) => handleDeliveryAddressChange("city", e.target.value)}
                             className="mt-2 rounded-none"
                             placeholder="City"
                           />
                         </div>
                         <div>
-                          <Label htmlFor="shippingPostalCode" className="text-sm font-light text-foreground">
+                          <Label htmlFor="deliveryPostalCode" className="text-sm font-light text-foreground">
                             Postal Code *
                           </Label>
                           <Input
-                            id="shippingPostalCode"
+                            id="deliveryPostalCode"
                             type="text"
-                            value={shippingAddress.postalCode}
-                            onChange={(e) => handleShippingAddressChange("postalCode", e.target.value)}
+                            value={deliveryAddress.postalCode}
+                            onChange={(e) => handleDeliveryAddressChange("postalCode", e.target.value)}
                             className="mt-2 rounded-none"
                             placeholder="Postal code"
                           />
@@ -340,14 +340,14 @@ const Checkout = () => {
                       </div>
 
                       <div>
-                        <Label htmlFor="shippingCountry" className="text-sm font-light text-foreground">
+                        <Label htmlFor="deliveryCountry" className="text-sm font-light text-foreground">
                           Country *
                         </Label>
                         <Input
-                          id="shippingCountry"
+                          id="deliveryCountry"
                           type="text"
-                          value={shippingAddress.country}
-                          onChange={(e) => handleShippingAddressChange("country", e.target.value)}
+                          value={deliveryAddress.country}
+                          onChange={(e) => handleDeliveryAddressChange("country", e.target.value)}
                           className="mt-2 rounded-none"
                           placeholder="Country"
                         />
@@ -495,24 +495,24 @@ const Checkout = () => {
                 </div>
               </div>
 
-            {/* Shipping Options */}
+            {/* Delivery Options */}
             <div className="bg-muted/20 p-8 rounded-none">
-              <h2 className="text-lg font-light text-foreground mb-6">Shipping Options</h2>
+              <h2 className="text-lg font-light text-foreground mb-6">Delivery Options</h2>
               
               <RadioGroup 
-                value={shippingOption} 
-                onValueChange={setShippingOption}
+                value={deliveryOption} 
+                onValueChange={setDeliveryOption}
                 className="space-y-4"
               >
                 <div className="flex items-center justify-between p-4 border border-muted-foreground/20 rounded-none">
                   <div className="flex items-center space-x-3">
                     <RadioGroupItem value="standard" id="standard" />
                     <Label htmlFor="standard" className="font-light text-foreground">
-                      Standard Shipping
+                      Standard Enclosed Transport
                     </Label>
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    Free • 3-5 business days
+                    Free • 7-14 business days
                   </div>
                 </div>
 
@@ -520,23 +520,23 @@ const Checkout = () => {
                   <div className="flex items-center space-x-3">
                     <RadioGroupItem value="express" id="express" />
                     <Label htmlFor="express" className="font-light text-foreground">
-                      Express Shipping
+                      Express Transport
                     </Label>
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    €15 • 1-2 business days
+                    $2,500 • 3-5 business days
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between p-4 border border-muted-foreground/20 rounded-none">
                   <div className="flex items-center space-x-3">
-                    <RadioGroupItem value="overnight" id="overnight" />
-                    <Label htmlFor="overnight" className="font-light text-foreground">
-                      Overnight Delivery
+                    <RadioGroupItem value="white-glove" id="white-glove" />
+                    <Label htmlFor="white-glove" className="font-light text-foreground">
+                      White-Glove Delivery
                     </Label>
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    €35 • Next business day
+                    $5,000 • Personal handover within 48hrs
                   </div>
                 </div>
               </RadioGroup>
@@ -630,17 +630,17 @@ const Checkout = () => {
                   <div className="bg-muted/10 p-6 rounded-none border border-muted-foreground/20 space-y-3">
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Subtotal</span>
-                      <span className="text-foreground">€{subtotal.toLocaleString()}</span>
+                      <span className="text-foreground">${subtotal.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Shipping</span>
+                      <span className="text-muted-foreground">Delivery</span>
                       <span className="text-foreground">
-                        {shipping === 0 ? "Free" : `€${shipping}`}
+                        {delivery === 0 ? "Free" : `$${delivery.toLocaleString()}`}
                       </span>
                     </div>
                     <div className="flex justify-between text-lg font-medium border-t border-muted-foreground/20 pt-3">
                       <span className="text-foreground">Total</span>
-                      <span className="text-foreground">€{total.toLocaleString()}</span>
+                      <span className="text-foreground">${total.toLocaleString()}</span>
                     </div>
                   </div>
 
@@ -649,7 +649,7 @@ const Checkout = () => {
                     disabled={isProcessing || !paymentDetails.cardNumber || !paymentDetails.expiryDate || !paymentDetails.cvv || !paymentDetails.cardholderName}
                     className="w-full rounded-none h-12 text-base"
                   >
-                    {isProcessing ? "Processing..." : `Complete Order • €${total.toLocaleString()}`}
+                    {isProcessing ? "Processing..." : `Complete Purchase • $${total.toLocaleString()}`}
                   </Button>
                 </div>
               ) : (
@@ -657,8 +657,8 @@ const Checkout = () => {
                   <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
                     <Check className="h-8 w-8 text-green-600" />
                   </div>
-                  <h3 className="text-xl font-light text-foreground mb-2">Order Complete!</h3>
-                  <p className="text-muted-foreground">Thank you for your purchase. Your order confirmation has been sent to your email.</p>
+                  <h3 className="text-xl font-light text-foreground mb-2">Purchase Complete!</h3>
+                  <p className="text-muted-foreground">Thank you for choosing Gearshift. Your purchase confirmation and delivery details have been sent to your email.</p>
                  </div>
                )}
              </div>
