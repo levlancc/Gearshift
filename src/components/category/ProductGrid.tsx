@@ -227,7 +227,7 @@ const ProductGrid = () => {
     <section className="w-full px-6 mb-16">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {products.map((product) => (
-            <Link key={product.id} to={`/product/${product.id}`}>
+            <Link key={product.id} to={`/category/${product.category.toLowerCase().replace(/\s+/g, '-')}`}>
               <Card 
                 className="border-none shadow-none bg-transparent group cursor-pointer"
               >

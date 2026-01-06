@@ -97,7 +97,7 @@ const ProductCarousel = () => {
                  key={vehicle.id}
                  className="basis-1/2 md:basis-1/3 lg:basis-1/4 pr-2 md:pr-4"
                >
-                 <Link to={`/product/${vehicle.id}`}>
+                 <Link to={`/category/${vehicle.category.toLowerCase().replace(/\s+/g, '-')}`}>
                   <Card className="border-none shadow-none bg-transparent group">
                     <CardContent className="p-0">
                       <div className="aspect-square mb-4 overflow-hidden bg-muted/10 relative">
