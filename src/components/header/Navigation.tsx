@@ -82,14 +82,6 @@ const Navigation = () => {
       ]
     },
     { 
-      name: "New Arrivals", 
-      href: "/category/new-arrivals",
-      submenuItems: [],
-      images: [
-        { src: electricCarImage, alt: "Electric Luxury", label: "Electric" },
-      ]
-    },
-    { 
       name: "About", 
       href: "/about/our-story",
       submenuItems: [
