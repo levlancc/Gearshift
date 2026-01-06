@@ -84,12 +84,7 @@ const Navigation = () => {
     { 
       name: "New Arrivals", 
       href: "/category/new-arrivals",
-      submenuItems: [
-        "This Week",
-        "2024 Models",
-        "Limited Edition",
-        "Pre-Orders"
-      ],
+      submenuItems: [],
       images: [
         { src: electricCarImage, alt: "Electric Luxury", label: "Electric" },
       ]
