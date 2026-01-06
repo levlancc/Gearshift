@@ -69,13 +69,7 @@ const Navigation = () => {
     { 
       name: "Inventory", 
       href: "/category/inventory",
-      submenuItems: [
-        "Sports Cars",
-        "Supercars", 
-        "Luxury Sedans",
-        "SUVs",
-        "Classics"
-      ],
+      submenuItems: [],
       images: [
         { src: sportsCarImage, alt: "Sports Cars", label: "Sports Cars" },
         { src: luxurySuvImage, alt: "Luxury SUVs", label: "Luxury SUVs" }
