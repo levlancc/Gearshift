@@ -180,21 +180,25 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Full width dropdown */}
-      {activeDropdown && (
-        <div 
-          className="absolute top-full left-0 right-0 bg-card border-b border-border z-50"
-          onMouseEnter={() => setActiveDropdown(activeDropdown)}
-          onMouseLeave={() => setActiveDropdown(null)}
-        >
-          <div className="px-6 py-8">
-            <div className="flex justify-between w-full">
-              {/* Left side - Menu items */}
-              <div className="flex-1">
-                <ul className="space-y-2">
-                   {navItems
-                     .find(item => item.name === activeDropdown)
-                     ?.submenuItems.map((subItem, index) => (
+      {/* Full width dropdown - only show if there are submenu items or images */}
+      {activeDropdown && (() => {
+        const activeItem = navItems.find(item => item.name === activeDropdown);
+        const hasContent = activeItem && (activeItem.submenuItems.length > 0 || activeItem.images.length > 0);
+        
+        if (!hasContent) return null;
+        
+        return (
+          <div 
+            className="absolute top-full left-0 right-0 bg-card border-b border-border z-50"
+            onMouseEnter={() => setActiveDropdown(activeDropdown)}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <div className="px-6 py-8">
+              <div className="flex justify-between w-full">
+                {/* Left side - Menu items */}
+                <div className="flex-1">
+                  <ul className="space-y-2">
+                     {activeItem.submenuItems.map((subItem, index) => (
                       <li key={index}>
                         <Link 
                           to={activeDropdown === "About" ? `/about/${subItem.toLowerCase().replace(/\s+/g, '-')}` : `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
@@ -203,15 +207,13 @@ const Navigation = () => {
                           {subItem}
                         </Link>
                       </li>
-                   ))}
-                </ul>
-              </div>
+                     ))}
+                  </ul>
+                </div>
 
-              {/* Right side - Images */}
-              <div className="flex space-x-6">
-                {navItems
-                  .find(item => item.name === activeDropdown)
-                  ?.images.map((image, index) => (
+                {/* Right side - Images */}
+                <div className="flex space-x-6">
+                  {activeItem.images.map((image, index) => (
                     <Link key={index} to="/category/sports-cars" className="w-[400px] h-[280px] cursor-pointer group relative overflow-hidden block">
                       <img 
                         src={image.src}
@@ -225,11 +227,12 @@ const Navigation = () => {
                       </div>
                     </Link>
                   ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* Search overlay */}
       {isSearchOpen && (
