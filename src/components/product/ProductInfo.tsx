@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
@@ -10,8 +9,13 @@ import {
   BreadcrumbSeparator 
 } from "@/components/ui/breadcrumb";
 import { Calendar, Fuel, Gauge, Settings } from "lucide-react";
+import { Product } from "@/data/products";
 
-const ProductInfo = () => {
+interface ProductInfoProps {
+  product: Product;
+}
+
+const ProductInfo = ({ product }: ProductInfoProps) => {
   return (
     <div className="space-y-6">
       {/* Breadcrumb - Show only on desktop */}
@@ -26,12 +30,14 @@ const ProductInfo = () => {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link to="/category/sports-cars">Sports Cars</Link>
+                <Link to={`/category/${product.category.toLowerCase().replace(/\s+/g, '-')}`}>
+                  {product.category}
+                </Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>488 GTB</BreadcrumbPage>
+              <BreadcrumbPage>{product.name}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -41,11 +47,11 @@ const ProductInfo = () => {
       <div className="space-y-2">
         <div className="flex justify-between items-start">
           <div>
-            <p className="text-sm font-light text-primary uppercase tracking-wider mb-1">Ferrari</p>
-            <h1 className="text-2xl md:text-3xl font-light text-foreground">488 GTB</h1>
+            <p className="text-sm font-light text-primary uppercase tracking-wider mb-1">{product.category}</p>
+            <h1 className="text-2xl md:text-3xl font-light text-foreground">{product.name}</h1>
           </div>
           <div className="text-right">
-            <p className="text-xl font-light text-foreground">$285,000</p>
+            <p className="text-xl font-light text-foreground">{product.price}</p>
           </div>
         </div>
       </div>
@@ -56,53 +62,61 @@ const ProductInfo = () => {
           <Calendar className="h-4 w-4 text-primary" />
           <div>
             <p className="text-xs font-light text-muted-foreground">Year</p>
-            <p className="text-sm font-medium text-foreground">2024</p>
+            <p className="text-sm font-medium text-foreground">{product.year || 'N/A'}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <Gauge className="h-4 w-4 text-primary" />
           <div>
             <p className="text-xs font-light text-muted-foreground">Mileage</p>
-            <p className="text-sm font-medium text-foreground">1,250 mi</p>
+            <p className="text-sm font-medium text-foreground">{product.mileage || 'N/A'}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <Fuel className="h-4 w-4 text-primary" />
           <div>
             <p className="text-xs font-light text-muted-foreground">Fuel Type</p>
-            <p className="text-sm font-medium text-foreground">Gasoline</p>
+            <p className="text-sm font-medium text-foreground">{product.fuelType || 'N/A'}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <Settings className="h-4 w-4 text-primary" />
           <div>
             <p className="text-xs font-light text-muted-foreground">Transmission</p>
-            <p className="text-sm font-medium text-foreground">7-Speed DCT</p>
+            <p className="text-sm font-medium text-foreground">{product.transmission || 'N/A'}</p>
           </div>
         </div>
       </div>
 
       {/* Vehicle details */}
       <div className="space-y-4 py-4 border-b border-border">
-        <div className="space-y-2">
-          <h3 className="text-sm font-light text-foreground">Engine</h3>
-          <p className="text-sm font-light text-muted-foreground">3.9L Twin-Turbo V8 • 661 HP</p>
-        </div>
+        {product.engine && (
+          <div className="space-y-2">
+            <h3 className="text-sm font-light text-foreground">Engine</h3>
+            <p className="text-sm font-light text-muted-foreground">{product.engine}</p>
+          </div>
+        )}
         
-        <div className="space-y-2">
-          <h3 className="text-sm font-light text-foreground">Performance</h3>
-          <p className="text-sm font-light text-muted-foreground">0-60 mph in 3.0s • Top Speed 205 mph</p>
-        </div>
+        {product.performance && (
+          <div className="space-y-2">
+            <h3 className="text-sm font-light text-foreground">Performance</h3>
+            <p className="text-sm font-light text-muted-foreground">{product.performance}</p>
+          </div>
+        )}
         
-        <div className="space-y-2">
-          <h3 className="text-sm font-light text-foreground">Exterior</h3>
-          <p className="text-sm font-light text-muted-foreground">Rosso Corsa (Racing Red)</p>
-        </div>
+        {product.exterior && (
+          <div className="space-y-2">
+            <h3 className="text-sm font-light text-foreground">Exterior</h3>
+            <p className="text-sm font-light text-muted-foreground">{product.exterior}</p>
+          </div>
+        )}
         
-        <div className="space-y-2">
-          <h3 className="text-sm font-light text-foreground">Editor's notes</h3>
-          <p className="text-sm font-light text-muted-foreground italic">"The 488 GTB represents the pinnacle of Ferrari engineering, blending raw power with refined elegance for an unforgettable driving experience."</p>
-        </div>
+        {product.description && (
+          <div className="space-y-2">
+            <h3 className="text-sm font-light text-foreground">Editor's notes</h3>
+            <p className="text-sm font-light text-muted-foreground italic">"{product.description}"</p>
+          </div>
+        )}
       </div>
 
       {/* Inquiry Button */}

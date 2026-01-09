@@ -1,20 +1,15 @@
 import { useState, useRef } from "react";
 import ImageZoom from "./ImageZoom";
-import sportsCarImage from "@/assets/sports-car.jpg";
-import mercedesCoupeImage from "@/assets/mercedes-coupe.jpg";
-import astonMartinImage from "@/assets/aston-martin.jpg";
-import maseratiImage from "@/assets/maserati.jpg";
-import supercarYellowImage from "@/assets/supercar-yellow.jpg";
 
-const productImages = [
-  sportsCarImage,
-  mercedesCoupeImage,
-  astonMartinImage,
-  maseratiImage,
-  supercarYellowImage,
-];
+interface ProductImageGalleryProps {
+  productImage: string;
+  productName: string;
+}
 
-const ProductImageGallery = () => {
+const ProductImageGallery = ({ productImage, productName }: ProductImageGalleryProps) => {
+  // For now, we'll use the same image multiple times to simulate a gallery
+  // In a real app, each product would have multiple images
+  const productImages = [productImage, productImage, productImage];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isZoomOpen, setIsZoomOpen] = useState(false);
   const [zoomInitialIndex, setZoomInitialIndex] = useState(0);
@@ -75,7 +70,7 @@ const ProductImageGallery = () => {
             >
               <img
                 src={image}
-                alt={`Vehicle view ${index + 1}`}
+                alt={`${productName} view ${index + 1}`}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>
@@ -95,7 +90,7 @@ const ProductImageGallery = () => {
           >
             <img
               src={productImages[currentImageIndex]}
-              alt={`Vehicle view ${currentImageIndex + 1}`}
+              alt={`${productName} view ${currentImageIndex + 1}`}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 select-none"
             />
           </div>
