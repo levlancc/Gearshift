@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import ProductImageGallery from "../components/product/ProductImageGallery";
 import ProductInfo from "../components/product/ProductInfo";
 import ProductDescription from "../components/product/ProductDescription";
 import ProductCarousel from "../components/content/ProductCarousel";
+import { getProductById } from "@/data/products";
 import { 
   Breadcrumb, 
   BreadcrumbItem, 
@@ -17,6 +17,28 @@ import {
 
 const ProductDetail = () => {
   const { productId } = useParams();
+  const product = getProductById(Number(productId));
+
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="pt-6 px-6">
+          <div className="text-center py-16">
+            <h1 className="text-2xl font-light text-foreground mb-4">Vehicle Not Found</h1>
+            <p className="text-muted-foreground mb-8">The vehicle you're looking for doesn't exist or has been sold.</p>
+            <Link 
+              to="/category/inventory" 
+              className="text-primary hover:underline"
+            >
+              Browse our inventory
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -36,22 +58,24 @@ const ProductDetail = () => {
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
                   <BreadcrumbLink asChild>
-                    <Link to="/category/sports-cars">Sports Cars</Link>
+                    <Link to={`/category/${product.category.toLowerCase().replace(/\s+/g, '-')}`}>
+                      {product.category}
+                    </Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>488 GTB</BreadcrumbPage>
+                  <BreadcrumbPage>{product.name}</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-            <ProductImageGallery />
+            <ProductImageGallery productImage={product.image} productName={`${product.category} ${product.name}`} />
             
             <div className="lg:pl-12 mt-8 lg:mt-0 lg:sticky lg:top-6 lg:h-fit">
-              <ProductInfo />
+              <ProductInfo product={product} />
               <ProductDescription />
             </div>
           </div>
@@ -66,7 +90,7 @@ const ProductDetail = () => {
         
         <section className="w-full">
           <div className="mb-4 px-6">
-            <h2 className="text-sm font-light text-foreground">More from Ferrari</h2>
+            <h2 className="text-sm font-light text-foreground">More from {product.category}</h2>
           </div>
           <ProductCarousel />
         </section>
