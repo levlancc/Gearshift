@@ -8,14 +8,27 @@ import {
   BreadcrumbPage, 
   BreadcrumbSeparator 
 } from "@/components/ui/breadcrumb";
-import { Calendar, Fuel, Gauge, Settings } from "lucide-react";
+import { Calendar, Fuel, Gauge, Settings, ShoppingBag, Check } from "lucide-react";
 import { Product } from "@/data/products";
+import { useCart } from "@/contexts/CartContext";
+import { useState } from "react";
 
 interface ProductInfoProps {
   product: Product;
 }
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
+  const { addToCart, cartItems } = useCart();
+  const [justAdded, setJustAdded] = useState(false);
+  
+  const isInCart = cartItems.some(item => item.id === product.id);
+  
+  const handleAddToCart = () => {
+    addToCart(product);
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 2000);
+  };
+
   return (
     <div className="space-y-6">
       {/* Breadcrumb - Show only on desktop */}
@@ -119,18 +132,33 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         )}
       </div>
 
-      {/* Inquiry Button */}
+      {/* Purchase Buttons */}
       <div className="space-y-4">
         <Button 
           className="w-full h-12 bg-foreground text-background hover:bg-foreground/90 font-light rounded-none"
+          onClick={handleAddToCart}
+          disabled={justAdded}
         >
-          Schedule Test Drive
+          {justAdded ? (
+            <>
+              <Check className="mr-2 h-4 w-4" />
+              Added to Cart
+            </>
+          ) : (
+            <>
+              <ShoppingBag className="mr-2 h-4 w-4" />
+              {isInCart ? 'Add Another' : 'Add to Cart'}
+            </>
+          )}
         </Button>
         <Button 
           variant="outline"
           className="w-full h-12 font-light rounded-none"
+          asChild
         >
-          Request More Information
+          <Link to="/checkout">
+            Proceed to Checkout
+          </Link>
         </Button>
       </div>
     </div>

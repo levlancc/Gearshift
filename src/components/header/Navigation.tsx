@@ -3,58 +3,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import ShoppingBag from "./ShoppingBag";
 import UserMenu from "./UserMenu";
-import sportsCarImage from "@/assets/sports-car.jpg";
-import luxurySuvImage from "@/assets/luxury-suv.jpg";
-import electricCarImage from "@/assets/electric-car.jpg";
-
-interface CartItem {
-  id: number;
-  name: string;
-  price: string;
-  image: string;
-  quantity: number;
-  category: string;
-}
+import { useCart } from "@/contexts/CartContext";
 
 const Navigation = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [offCanvasType, setOffCanvasType] = useState<'favorites' | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isShoppingBagOpen, setIsShoppingBagOpen] = useState(false);
   
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: 1,
-      name: "911 Turbo S",
-      price: "$207,000",
-      image: sportsCarImage,
-      quantity: 1,
-      category: "Sports Cars"
-    },
-    {
-      id: 2,
-      name: "Range Rover SVR",
-      price: "$185,000", 
-      image: luxurySuvImage,
-      quantity: 1,
-      category: "Luxury SUVs"
-    },
-  ]);
-
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  
-  const updateQuantity = (id: number, newQuantity: number) => {
-    if (newQuantity <= 0) {
-      setCartItems(items => items.filter(item => item.id !== id));
-    } else {
-      setCartItems(items => 
-        items.map(item => 
-          item.id === id ? { ...item, quantity: newQuantity } : item
-        )
-      );
-    }
-  };
+  const { cartItems, updateQuantity, totalItems, isCartOpen, setIsCartOpen } = useCart();
 
   const popularSearches = [
     "Porsche 911",
@@ -165,7 +122,7 @@ const Navigation = () => {
           <button 
             className="p-2 text-foreground hover:text-primary transition-colors duration-200 relative"
             aria-label="Inquiries"
-            onClick={() => setIsShoppingBagOpen(true)}
+            onClick={() => setIsCartOpen(true)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
@@ -310,12 +267,12 @@ const Navigation = () => {
       
       {/* Shopping Bag Component */}
       <ShoppingBag 
-        isOpen={isShoppingBagOpen}
-        onClose={() => setIsShoppingBagOpen(false)}
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
         cartItems={cartItems}
         updateQuantity={updateQuantity}
         onViewFavorites={() => {
-          setIsShoppingBagOpen(false);
+          setIsCartOpen(false);
           setOffCanvasType('favorites');
         }}
       />
