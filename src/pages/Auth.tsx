@@ -147,9 +147,13 @@ const Auth = () => {
         } else {
           toast({
             title: "Account Created!",
-            description: "Welcome to Gearshift. Your account has been created.",
+            description: "Please sign in with your new account.",
           });
-          navigate('/');
+          // Reset form and switch to login
+          setEmail('');
+          setPassword('');
+          setFullName('');
+          setIsLogin(true);
         }
       }
     } catch (error) {
